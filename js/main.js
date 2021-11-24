@@ -27,7 +27,7 @@ var myObj={
  * Результат сохраните в переменную decimal2.
  */
 
-// decimal2
+decimal2=myNum.toFixed(2);
 
 /*
  * #3
@@ -37,7 +37,14 @@ var myObj={
  * Поэкспериментируйте с результатами, выводя их в консоль.
  */
 
-// i
+var i=5;
+console.log(i);
+console.log(++i);
+ console.log(i);
+ console.log(i++);
+ console.log(i);
+ console.log(--i);
+ console.log(i--);
 
 /*
  * #4
@@ -48,17 +55,23 @@ var myObj={
  * В вычислениях можно использовать объявленную ранее переменную myNum и/или числа.
  */
 
-// myTest
+var myTest=20;
 
-// +=
+myTest+=5;
+console.log('+=:',myTest);
 
-// –=
+myTest-=10;
+console.log('–=:',myTest);
 
-// *=
+myTest*=2;
+console.log('*=:',myTest);
 
-// /=
+myTest/=3;
+console.log('/=:',myTest);
 
-// %=
+myTest%=4;
+console.log('%=:',myTest);
+
 
 /*
  * #5
@@ -66,13 +79,17 @@ var myObj={
  * Используя свойства и методы объекта Math, присвойте переменным и отобразите в консоли
  */
 
-// константа Pi → myPi
+var myPi=Math.PI;
+console.log('Pi → myPi:', myPi);
 
-// округленное значение числа 89.279 → myRound
+var myRound=Math.round(89.279,0);
+console.log('89.279 → myRound:',myRound);
 
-// случайное число между 0..10 → myRandom
+var myRandom=Math.random()*10;
+console.log('0..10 → myRandom:',myRandom);
 
-// 3 в 5 степени → myPow
+var myPow=Math.pow(3,5);
+console.log('3 в 5 степени → myPow',myPow);
 
 /*
  * #6
@@ -81,9 +98,10 @@ var myObj={
  * Присвойте ключу str строку текста "Мама мыла раму, рама мыла маму", ключу length установите длину этой строки.
  */
 
-// Мама мыла раму, рама мыла маму
+var strObj = {str: 'Мама мыла раму, рама мыла маму'};
 
-// strObj
+strObj.length = strObj.str.length;
+console.log('strObj = ', strObj);
 
 /*
  * #7
@@ -93,6 +111,8 @@ var myObj={
  */
 
 // isRamaPos
+var isRamaPos=strObj.str.indexOf('рама');
+console.log('isRamaPos:',isRamaPos);
 
 /*
  * #8
@@ -104,9 +124,15 @@ var myObj={
  */
 
 // strReplace
+var strReplace=strObj.str.replace('мыла','моет');
+strReplace=strReplace.replace('рама','Рама');
+strReplace=strReplace.replace('мыла','держит');
+console.log('strReplace',strReplace);
 
 /*
  * #9
  *
  * Преобразуйте любую строку в верхний, затем в нижний регистры, результат отобразите в консоли.
  */
+console.log(strObj.str.toUpperCase());
+console.log(strObj.str.toLowerCase());
