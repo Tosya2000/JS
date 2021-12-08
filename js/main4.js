@@ -76,12 +76,12 @@ function getLocalDate(date, isSeconds=false, isISO=false){
 }
 console.log(getLocalDate(myDate)); // 16.07.2019, 00:15
 console.log(getLocalDate(myDate, true)); // 16.07.2019, 00:15:32
-// console.log(getLocalDate(myDate, false, true)); // 2019-06-02, 00:15
-// console.log(getLocalDate(myDate, true, true)); // 2019-06-02, 00:15:32
+console.log(getLocalDate(myDate, false, true)); // 2019-06-02, 00:15
+console.log(getLocalDate(myDate, true, true)); // 2019-06-02, 00:15:32
 console.log(getLocalDate(new Date(123456))); // 01.01.1970, 03:02
 console.log(getLocalDate(new Date(123456), true)); // 01.01.1970, 03:02:03
-// console.log(getLocalDate(new Date(123456), false, true)); // 1970-01-01, 03:02
-// console.log(getLocalDate(new Date(123456), true, true)); // 1970-01-01, 03:02:03
+console.log(getLocalDate(new Date(123456), false, true)); // 1970-01-01, 03:02
+console.log(getLocalDate(new Date(123456), true, true)); // 1970-01-01, 03:02:03
 
 // тестирование
 // console.log(getLocalDate(new Date(123456)) === '01.01.1970, 03:02');
