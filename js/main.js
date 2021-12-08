@@ -1,138 +1,104 @@
-console.log('Sample JavaScript HW#1');
+/* eslint-disable no-unused-vars */
+/* eslint-disable func-style */
+/* eslint-disable require-jsdoc */
 
-/*
- * #1
- *
- * Создайте переменные со значениями
- */
+function createCarousel(slidesCount = 5) {
+  // ваш код здесь
+  container=document.getElementById('carousel');
 
-// имя переменной: myNum, значение: 10
-var myNum=10;
-// имя переменной: myStr, значение: 'строка'
-var myStr='строка';
-// имя переменной: myBool, значение: true
-var myBool=true;
-// имя переменной: myArr, значения: 1, 2, 3, 4, 5
-var myArr=[1,2,3,4,5];
-// имя переменной myObj, значения: first: 'First Name', last: 'Last Name'
-var myObj={
-  first: 'First Name', 
-  last: 'Last Name'
+  slide = document.createElement('ul');
+  slide.setAttribute('class', 'slides');
+
+  indicator = document.createElement('div');
+  indicator.setAttribute('class', 'indicators');
+  
+  for (i = 0; i < slidesCount; i++) {
+    let slideItem = document.createElement('li');
+    let slideLink = document.createElement('a');
+
+    slideItem.setAttribute(
+      'class',
+      i === 0 ? 'slides__item active' : 'slides__item'
+    );
+    slideLink.setAttribute('href', '#');
+    slideItem.appendChild(slideLink);
+    slide.appendChild(slideItem);
+
+    let indicatorsItem = document.createElement('span');
+
+    indicatorsItem.setAttribute(
+      'class',
+      i === 0 ? 'indicators__item active' : 'indicators__item'
+    );
+    indicatorsItem.setAttribute('data-slide-to', i);
+    indicator.appendChild(indicatorsItem);
+  }
+
+  container.appendChild(slide);
+  container.appendChild(indicator);
+
+  controlsContainer = document.createElement('div');
+  controlsContainer.setAttribute('class', 'controls');
+
+  for (i = 0; i < 3; i++) {
+    let controlItem = document.createElement('div');
+    let controlIcon = document.createElement('i');
+    const defItemClass = 'controls__item';
+    const defIconClass = 'fas';
+
+    switch (i) {
+      case 0:
+        controlItem.setAttribute('class', `${defItemClass} controls__prev`);
+        controlIcon.setAttribute('class', `${defIconClass} fa-chevron-left`);
+        break;
+      case 1:
+        controlItem.setAttribute('class', `${defItemClass} controls__next`);
+        controlIcon.setAttribute('class', `${defIconClass} fa-chevron-right`);
+        break;
+      case 2:
+        controlItem.setAttribute('class', `${defItemClass} controls__pause`);
+        controlIcon.setAttribute('class', `${defIconClass} fa-play`);
+        break;
+    }
+    controlItem.appendChild(controlIcon);
+    controlsContainer.appendChild(controlItem);
+  }
+  container.appendChild(controlsContainer);
+
+  styleContainer = document.createElement('style');
+  let styleCode = `
+    .controls,
+    .slides {
+      position: relative;
+    }
+    .indicators {
+      display: flex;
+    }
+    .indicators__item {
+      display: block;
+      width: 20px;
+      height: 40px;
+      background-color: blue;
+      margin: 10px;
+      border-radius: 5px;
+    }`;
+
+  styleContainer.innerHTML = styleCode;
+  container.appendChild(styleContainer);
+
+
+  let indicatorContainer = document.querySelector('div.indicators');
+  indicatorContainer.addEventListener('click', indicatorsHandler);
 }
-/*
- * #2
- *
- * Отформатируйте целое число, которое хранится в переменной myNum,
- * чтобы получить результат с 2 знаками после запятой.
- * Результат сохраните в переменную decimal2.
- */
+function indicatorsHandler(e) {
+  let target = e.target;
 
-decimal2=myNum.toFixed(2);
+  if (target.classList.contains('indicators__item')) {
+    target.style.backgroundColor = 'red';
 
-/*
- * #3
- *
- * Создайте переменную i для которой выполните префиксный
- * и постфиксный инкремент и декремент.
- * Поэкспериментируйте с результатами, выводя их в консоль.
- */
+    if (prevIndicator !== null) prevIndicator.removeAttribute('style');
 
-var i=5;
-console.log(i);
-console.log(++i);
- console.log(i);
- console.log(i++);
- console.log(i);
- console.log(--i);
- console.log(i--);
-
-/*
- * #4
- *
- * Создайте новую переменную myTest и присвойте ей значение 20.
- * Выполните присваивание с операцией, используя операторы: +=, –=, *=, /=, %=.
- * Результаты присваиваются в myTest, затем выводятся в консоль.
- * В вычислениях можно использовать объявленную ранее переменную myNum и/или числа.
- */
-
-var myTest=20;
-
-myTest+=5;
-console.log('+=:',myTest);
-
-myTest-=10;
-console.log('–=:',myTest);
-
-myTest*=2;
-console.log('*=:',myTest);
-
-myTest/=3;
-console.log('/=:',myTest);
-
-myTest%=4;
-console.log('%=:',myTest);
-
-
-/*
- * #5
- *
- * Используя свойства и методы объекта Math, присвойте переменным и отобразите в консоли
- */
-
-var myPi=Math.PI;
-console.log('Pi → myPi:', myPi);
-
-var myRound=Math.round(89.279,0);
-console.log('89.279 → myRound:',myRound);
-
-var myRandom=Math.random()*10;
-console.log('0..10 → myRandom:',myRandom);
-
-var myPow=Math.pow(3,5);
-console.log('3 в 5 степени → myPow',myPow);
-
-/*
- * #6
- *
- * Создайте объект с именем strObj.
- * Присвойте ключу str строку текста "Мама мыла раму, рама мыла маму", ключу length установите длину этой строки.
- */
-
-var strObj = {str: 'Мама мыла раму, рама мыла маму'};
-
-strObj.length = strObj.str.length;
-console.log('strObj = ', strObj);
-
-/*
- * #7
- *
- * Проверьте наличие текста 'рама' в поле str объекта strObj (см.п.6),
- * результат сохраните в переменную isRamaPos и выведите ее в консоль.
- */
-
-// isRamaPos
-var isRamaPos=strObj.str.indexOf('рама');
-console.log('isRamaPos:',isRamaPos);
-
-/*
- * #8
- *
- * Выполните переименование подстроки в строке.
- * В качестве исходной строки используйте значение поля str объекта strObj (см.п.6), результат сохраните в переменную strReplace и отобразите в консоли.
- * Исходная строка: 'Мама мыла раму, рама мыла маму'
- *       Результат: 'Мама моет раму, Рама держит маму'
- */
-
-// strReplace
-var strReplace=strObj.str.replace('мыла','моет');
-strReplace=strReplace.replace('рама','Рама');
-strReplace=strReplace.replace('мыла','держит');
-console.log('strReplace',strReplace);
-
-/*
- * #9
- *
- * Преобразуйте любую строку в верхний, затем в нижний регистры, результат отобразите в консоли.
- */
-console.log(strObj.str.toUpperCase());
-console.log(strObj.str.toLowerCase());
+    prevIndicator = target;
+  }
+}
+createCarousel(4);
